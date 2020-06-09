@@ -8,8 +8,8 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 
-import '../models/exit-node-service.dart';
-import '../models/exit-node-provider.dart';
+import '../models/exit_node_service.dart';
+import '../models/exit_node_provider.dart';
 import '../models/country.dart';
 import '../helpers/api_helpers.dart';
 

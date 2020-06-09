@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree. */
 import 'package:flutter/material.dart';
 import 'package:flag/flag.dart';
 
-import '../models/exit-node-provider.dart';
+import '../models/exit_node_provider.dart';
 
 class ExitNodeProviderTile extends StatelessWidget {
   const ExitNodeProviderTile({

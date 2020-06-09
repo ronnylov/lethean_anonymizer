@@ -5,11 +5,11 @@ This source code is licensed under the BSD-style license found in the
 LICENSE file in the root directory of this source tree. */
 
 import 'package:flutter/material.dart';
-import 'package:lthn_vpn/models/exit-node-provider.dart';
+import 'package:lthn_vpn/models/exit_node_provider.dart';
 import 'package:provider/provider.dart';
 
-import '../providers/exit-node-providers.dart';
-import '../widgets/exit-node-provider-tile.dart';
+import '../providers/exit_node_providers.dart';
+import '../widgets/exit_node_provider_tile.dart';
 
 // These were used for testing detection of device external IP address
 // When pressing floatingactionbutton

@@ -6,7 +6,7 @@ LICENSE file in the root directory of this source tree. */
 
 import 'package:flutter/foundation.dart';
 
-import './exit-node-service.dart';
+import './exit_node_service.dart';
 import './country.dart';
 
 class ExitNodeProvider {

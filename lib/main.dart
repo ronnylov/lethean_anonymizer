@@ -7,7 +7,7 @@ LICENSE file in the root directory of this source tree. */
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import './providers/exit-node-providers.dart';
+import './providers/exit_node_providers.dart';
 import './screens/providers_list_screen.dart';
 
 void main() {
