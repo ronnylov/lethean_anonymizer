@@ -1,5 +1,7 @@
 # lthn_vpn
 
+Mobile solution for Lethean VPN
+
 A new Flutter project.
 
 ## Getting Started
