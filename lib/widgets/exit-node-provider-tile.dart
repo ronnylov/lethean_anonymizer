@@ -13,7 +13,8 @@ class ExitNodeProviderTile extends StatelessWidget {
   const ExitNodeProviderTile({
     Key key,
     @required ExitNodeProvider currentNode,
-  }) : _currentNode = currentNode, super(key: key);
+  })  : _currentNode = currentNode,
+        super(key: key);
 
   final ExitNodeProvider _currentNode;
 
@@ -44,14 +45,11 @@ class ExitNodeProviderTile extends StatelessWidget {
       subtitle: _currentNode.country == null
           ? Text(
               'Unknown Country',
-              style:
-                  Theme.of(context).textTheme.subtitle1,
+              style: Theme.of(context).textTheme.subtitle1,
             )
           : Text(
-              '${_currentNode.country.name} ' +
-                  '${_currentNode.country.code}',
-              style:
-                  Theme.of(context).textTheme.subtitle1,
+              '${_currentNode.country.name} ' + '${_currentNode.country.code}',
+              style: Theme.of(context).textTheme.subtitle1,
             ),
       trailing: const Icon(Icons.arrow_forward_ios),
       onTap: () {},

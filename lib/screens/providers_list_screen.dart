@@ -65,7 +65,8 @@ class _ProviderListScreenState extends State<ProviderListScreen> {
                         itemBuilder: (context, index) => Card(
                           key: Key(_currentNodeList[index].id),
                           color: Colors.blueGrey[700],
-                          child: ExitNodeProviderTile(currentNode: _currentNodeList[index]),
+                          child: ExitNodeProviderTile(
+                              currentNode: _currentNodeList[index]),
                           elevation: 4,
                           margin: const EdgeInsets.all(6),
                           shape: RoundedRectangleBorder(
