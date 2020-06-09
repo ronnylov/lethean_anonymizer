@@ -7,11 +7,14 @@ LICENSE file in the root directory of this source tree. */
 import 'package:flutter/material.dart';
 import 'package:lthn_vpn/models/exit-node-provider.dart';
 import 'package:provider/provider.dart';
-import 'package:flag/flag.dart';
 
 import '../providers/exit-node-providers.dart';
-import '../helpers/api_helpers.dart';
-import '../models/country.dart';
+import '../widgets/exit-node-provider-tile.dart';
+
+// These were used for testing detection of device external IP address
+// When pressing floatingactionbutton
+// import '../helpers/api_helpers.dart';
+// import '../models/country.dart';
 
 class ProviderListScreen extends StatefulWidget {
   @override
@@ -62,45 +65,9 @@ class _ProviderListScreenState extends State<ProviderListScreen> {
                         itemBuilder: (context, index) => Card(
                           key: Key(_currentNodeList[index].id),
                           color: Colors.blueGrey[700],
-                          child: ListTile(
-                            // Country is not required so better check if set
-                            leading: _currentNodeList[index].country == null
-                                ? SizedBox(
-                                    width: 60,
-                                    height: 40,
-                                    child: Icon(
-                                      Icons.help_outline,
-                                      size: 40,
-                                    ),
-                                  )
-                                : Flag(
-                                    _currentNodeList[index].country.code,
-                                    width: 60.0,
-                                    height: 40.0,
-                                    fit: BoxFit.cover,
-                                  ),
-                            title: Text(
-                              _currentNodeList[index].name,
-                              style: Theme.of(context).textTheme.headline6,
-                            ),
-                            // Country is not required so better check if set
-                            subtitle: _currentNodeList[index].country == null
-                                ? Text(
-                                    'Unknown Country',
-                                    style:
-                                        Theme.of(context).textTheme.subtitle1,
-                                  )
-                                : Text(
-                                    '${_currentNodeList[index].country.name} ' +
-                                        '${_currentNodeList[index].country.code}',
-                                    style:
-                                        Theme.of(context).textTheme.subtitle1,
-                                  ),
-                            trailing: Icon(Icons.arrow_forward_ios),
-                            onTap: () {},
-                          ),
+                          child: ExitNodeProviderTile(currentNode: _currentNodeList[index]),
                           elevation: 4,
-                          margin: EdgeInsets.all(6),
+                          margin: const EdgeInsets.all(6),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8),
                           ),
@@ -121,12 +88,13 @@ class _ProviderListScreenState extends State<ProviderListScreen> {
             ).fetchAndSetProviders();
           });
 
-          final myIp = await ApiHelpers.fetchMyIp();
-          final myCountryMap = await ApiHelpers.fetchCountryFromIp(myIp);
-          final myCountry = Country.fromJson(myCountryMap);
-          print('Country: ' + myCountry.name + ' ' + myCountry.code);
-          print('Latitude: ' + myCountry.latitude.toString());
-          print('Longitude: ' + myCountry.longitude.toString());
+          // Some code for testing detecting internet location of the device
+          // final myIp = await ApiHelpers.fetchMyIp();
+          // final myCountryMap = await ApiHelpers.fetchCountryFromIp(myIp);
+          // final myCountry = Country.fromJson(myCountryMap);
+          // print('Country: ' + myCountry.name + ' ' + myCountry.code);
+          // print('Latitude: ' + myCountry.latitude.toString());
+          // print('Longitude: ' + myCountry.longitude.toString());
         },
       ),
     );
