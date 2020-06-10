@@ -20,39 +20,49 @@ class ExitNodeProviderTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      // Country is not required so better check if set
-      leading: _currentNode.country == null
-          ? const SizedBox(
-              width: 60,
-              height: 40,
-              child: const Icon(
-                Icons.help_outline,
-                size: 40,
+    return Card(
+      key: Key(_currentNode.id),
+      color: Colors.blueGrey[700],
+      child: ListTile(
+        // Country is not required so better check if set
+        leading: _currentNode.country == null
+            ? const SizedBox(
+                width: 60,
+                height: 40,
+                child: const Icon(
+                  Icons.help_outline,
+                  size: 40,
+                ),
+              )
+            : Flag(
+                _currentNode.country.code,
+                width: 60.0,
+                height: 40.0,
+                fit: BoxFit.cover,
               ),
-            )
-          : Flag(
-              _currentNode.country.code,
-              width: 60.0,
-              height: 40.0,
-              fit: BoxFit.cover,
-            ),
-      title: Text(
-        _currentNode.name,
-        style: Theme.of(context).textTheme.headline6,
+        title: Text(
+          _currentNode.name,
+          style: Theme.of(context).textTheme.headline6,
+        ),
+        // Country is not required so better check if set
+        subtitle: _currentNode.country == null
+            ? Text(
+                'Unknown Country',
+                style: Theme.of(context).textTheme.subtitle1,
+              )
+            : Text(
+                '${_currentNode.country.name} ' +
+                    '${_currentNode.country.code}',
+                style: Theme.of(context).textTheme.subtitle1,
+              ),
+        trailing: const Icon(Icons.arrow_forward_ios),
+        onTap: () {},
       ),
-      // Country is not required so better check if set
-      subtitle: _currentNode.country == null
-          ? Text(
-              'Unknown Country',
-              style: Theme.of(context).textTheme.subtitle1,
-            )
-          : Text(
-              '${_currentNode.country.name} ' + '${_currentNode.country.code}',
-              style: Theme.of(context).textTheme.subtitle1,
-            ),
-      trailing: const Icon(Icons.arrow_forward_ios),
-      onTap: () {},
+      elevation: 4,
+      margin: const EdgeInsets.all(6),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
+      ),
     );
   }
 }

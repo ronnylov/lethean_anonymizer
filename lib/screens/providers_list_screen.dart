@@ -62,17 +62,8 @@ class _ProviderListScreenState extends State<ProviderListScreen> {
                       padding: const EdgeInsets.all(4.0),
                       child: ListView.builder(
                         itemCount: _currentNodeList.length,
-                        itemBuilder: (context, index) => Card(
-                          key: Key(_currentNodeList[index].id),
-                          color: Colors.blueGrey[700],
-                          child: ExitNodeProviderTile(
-                              currentNode: _currentNodeList[index]),
-                          elevation: 4,
-                          margin: const EdgeInsets.all(6),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                        ),
+                        itemBuilder: (context, index) => ExitNodeProviderTile(
+                            currentNode: _currentNodeList[index]),
                       ),
                     );
             }
