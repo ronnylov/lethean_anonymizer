@@ -7,11 +7,11 @@ LICENSE file in the root directory of this source tree. */
 import 'package:flutter/material.dart';
 import 'package:lthn_vpn/models/exit_node_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_map/flutter_map.dart';
 
 import '../providers/exit_node_providers.dart';
 import '../widgets/exit_node_provider_tile.dart';
-import 'package:flutter_map/flutter_map.dart';
-import 'package:latlong/latlong.dart';
+import '../widgets/world_map.dart';
 
 // These were used for testing detection of device external IP address
 // When pressing floatingactionbutton
@@ -26,6 +26,7 @@ class ProviderListScreen extends StatefulWidget {
 class _ProviderListScreenState extends State<ProviderListScreen> {
   Future<void> _refresh;
   List<ExitNodeProvider> _currentNodeList;
+  final List<Marker> _markers = [];
 
   @override
   void didChangeDependencies() {
@@ -62,43 +63,8 @@ class _ProviderListScreenState extends State<ProviderListScreen> {
                     )
                   : Column(
                       children: <Widget>[
-                        Card(
-                          elevation: 4,
-                          margin: const EdgeInsets.all(6),
-                          clipBehavior: Clip.antiAlias,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Container(
-                            height: 200,
-                            child: FlutterMap(
-                              options: MapOptions(
-                                center: LatLng(51.5, -0.09),
-                                zoom: 1.0,
-                              ),
-                              layers: [
-                                TileLayerOptions(
-                                    urlTemplate:
-                                        "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-                                    subdomains: ['a', 'b', 'c']),
-                                MarkerLayerOptions(
-                                  markers: [
-                                    Marker(
-                                      width: 28.0,
-                                      height: 28.0,
-                                      point: LatLng(51.5, -0.09),
-                                      builder: (ctx) => Container(
-                                        child: Icon(
-                                          Icons.home,
-                                          color: Colors.red,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
+                        WorldMap(
+                          mapMarkers: _markers,
                         ),
                         SizedBox(
                           height: 6,
@@ -141,3 +107,43 @@ class _ProviderListScreenState extends State<ProviderListScreen> {
     );
   }
 }
+
+
+// Commented code below is left there to be moved somewhere else.
+// Don't want to loose the code but not yet decided where to use it.
+// Map markers creted by country locations.
+
+// Create markers for usage on the WorldMap from stored countries.
+// Only one marker per country even if more exit nodes in a country.
+// _providers.forEach((provider) {
+//   _markers.firstWhere(
+//         (marker) =>
+//             marker.point ==
+//             LatLng(provider.country.latitude, provider.country.longitude),
+//         orElse: () {
+//           // There was no marker already for this provider country.
+//           // So let's add a new marker on the list pointing to this new country.
+//           // But only if a country is set (country is optional)
+//           if (provider.country != null) {
+//             final marker = Marker(
+//               point:
+//                   LatLng(provider.country.latitude, provider.country.longitude),
+//               height: 28,
+//               width: 28,
+//               builder: (context) => Container(
+//                 child: Icon(
+//                   Icons.location_on,
+//                   color: Colors.lightBlue,
+//                 ),
+//               ),
+//             );
+//             _markers.add(marker);
+//             print('Marker added');
+//             notifyListeners();
+//             return marker;
+//           } else {
+//             return null;
+//           }
+//         },
+//       );
+//     });

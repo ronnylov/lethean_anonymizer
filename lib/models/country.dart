@@ -17,10 +17,27 @@ class Country {
     this.longitude,
   });
 
-// Country.fromJson constructor is using the result format
-// from https://api.ipgeolocationapi.com/geolocate/ API
-// This type of data is returned by the function ApiHelpers.fetchIpCountry()
-// See https://ipgeolocationapi.com/ about API details
+  /* Need to override both == operator and hashCode in order to
+  make .toSet() work with deduplication of a List<Country>
+  Trying to use countries.toSet().toList() to remove duplicated countries
+  in exit_node_providers.dart
+  See how to override here:
+  https://dart-lang.github.io/linter/lints/hash_and_equals.html
+  For Country we only care if country.code is identical when converted to uppercase.
+  I mean location could be different but still within the same country.
+  We do not check if the location is within the borders of a country. */
+
+  @override
+  bool operator ==(Object other) =>
+      other is Country && other.code.toUpperCase() == code.toUpperCase();
+
+  @override
+  int get hashCode => code.toUpperCase().hashCode;
+
+  /* Country.fromJson constructor is using the result format
+  from https://api.ipgeolocationapi.com/geolocate/ API
+  This type of data is returned by the function ApiHelpers.fetchIpCountry()
+  See https://ipgeolocationapi.com/ about API details */
 
   Country.fromJson(Map<String, dynamic> jsonMap)
       : name = jsonMap['name'],
