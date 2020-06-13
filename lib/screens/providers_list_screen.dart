@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:lthn_vpn/models/exit_node_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong/latlong.dart';
 
 import '../providers/exit_node_providers.dart';
 import '../widgets/exit_node_provider_tile.dart';
@@ -25,8 +26,8 @@ class ProviderListScreen extends StatefulWidget {
 
 class _ProviderListScreenState extends State<ProviderListScreen> {
   Future<void> _refresh;
-  List<ExitNodeProvider> _currentNodeList;
-  final List<Marker> _markers = [];
+  List<ExitNodeProvider> _currentNodeList = [];
+  List<Marker> _markers = [];
 
   @override
   void didChangeDependencies() {
@@ -57,6 +58,24 @@ class _ProviderListScreenState extends State<ProviderListScreen> {
               );
             } else {
               _currentNodeList = exitNode.providers;
+              _markers = []; // Make sure the list is empty before building it
+              exitNode.countries.forEach((country) {
+                _markers.add(
+                  Marker(
+                    point: LatLng(country.latitude, country.longitude),
+                    height: 28.00,
+                    width: 28.00,
+                    builder: (context) => Container(
+                      child: Icon(
+                        Icons.location_on,
+                        color: Colors.lightBlue,
+                        size: 28,
+                      ),
+                    ),
+                    anchorPos: AnchorPos.align(AnchorAlign.center),
+                  ),
+                );
+              });
               return _currentNodeList.isEmpty
                   ? Center(
                       child: const Text('No exit node available.'),
@@ -107,43 +126,3 @@ class _ProviderListScreenState extends State<ProviderListScreen> {
     );
   }
 }
-
-
-// Commented code below is left there to be moved somewhere else.
-// Don't want to loose the code but not yet decided where to use it.
-// Map markers creted by country locations.
-
-// Create markers for usage on the WorldMap from stored countries.
-// Only one marker per country even if more exit nodes in a country.
-// _providers.forEach((provider) {
-//   _markers.firstWhere(
-//         (marker) =>
-//             marker.point ==
-//             LatLng(provider.country.latitude, provider.country.longitude),
-//         orElse: () {
-//           // There was no marker already for this provider country.
-//           // So let's add a new marker on the list pointing to this new country.
-//           // But only if a country is set (country is optional)
-//           if (provider.country != null) {
-//             final marker = Marker(
-//               point:
-//                   LatLng(provider.country.latitude, provider.country.longitude),
-//               height: 28,
-//               width: 28,
-//               builder: (context) => Container(
-//                 child: Icon(
-//                   Icons.location_on,
-//                   color: Colors.lightBlue,
-//                 ),
-//               ),
-//             );
-//             _markers.add(marker);
-//             print('Marker added');
-//             notifyListeners();
-//             return marker;
-//           } else {
-//             return null;
-//           }
-//         },
-//       );
-//     });

@@ -30,7 +30,7 @@ class WorldMap extends StatelessWidget {
         height: 200,
         child: FlutterMap(
           options: MapOptions(
-            center: LatLng(51.5, -0.09),
+            center: LatLng(30.00, 0.00),
             zoom: 1.0,
           ),
           layers: [
@@ -38,21 +38,7 @@ class WorldMap extends StatelessWidget {
                 urlTemplate:
                     "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
                 subdomains: ['a', 'b', 'c']),
-            MarkerLayerOptions(markers: _mapMarkers
-                // [
-                //   Marker(
-                //     width: 28.0,
-                //     height: 28.0,
-                //     point: LatLng(51.5, -0.09),
-                //     builder: (ctx) => Container(
-                //       child: Icon(
-                //         Icons.home,
-                //         color: Colors.red,
-                //       ),
-                //     ),
-                //   ),
-                // ],
-                ),
+            MarkerLayerOptions(markers: _mapMarkers),
           ],
         ),
       ),
