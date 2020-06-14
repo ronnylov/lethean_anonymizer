@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flag/flag.dart';
 
 import '../models/exit_node_provider.dart';
+import '../screens/services_list_screen.dart';
 
 class ExitNodeProviderTile extends StatelessWidget {
   const ExitNodeProviderTile({
@@ -56,7 +57,13 @@ class ExitNodeProviderTile extends StatelessWidget {
                 style: Theme.of(context).textTheme.subtitle1,
               ),
         trailing: const Icon(Icons.arrow_forward_ios),
-        onTap: () {},
+        onTap: () {
+          Navigator.pushNamed(
+            context,
+            ServicesListScreen.routeName,
+            arguments: _currentNode,
+          );
+        },
       ),
       elevation: 4,
       margin: const EdgeInsets.all(6),

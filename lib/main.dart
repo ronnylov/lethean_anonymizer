@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 
 import './providers/exit_node_providers.dart';
 import './screens/providers_list_screen.dart';
+import './screens/services_list_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -28,6 +29,9 @@ class MyApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         home: ProviderListScreen(),
+        routes: {
+          ServicesListScreen.routeName: (ctx) => ServicesListScreen(),
+        },
       ),
     );
   }
