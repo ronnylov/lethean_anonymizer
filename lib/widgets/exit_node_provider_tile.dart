@@ -23,7 +23,6 @@ class ExitNodeProviderTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       key: Key(_currentNode.id),
-      color: Colors.blueGrey[700],
       child: ListTile(
         // Country is not required so better check if set
         leading: _currentNode.country == null
