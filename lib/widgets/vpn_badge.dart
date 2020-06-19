@@ -19,7 +19,7 @@ class VpnBadge extends StatelessWidget {
           radius: 18.0,
           backgroundColor: Theme.of(context).accentColor,
           child: const Icon(
-            Icons.enhanced_encryption,
+            Icons.security,
             size: 26.0,
           ),
         ),

@@ -19,13 +19,13 @@ class ProxyBadge extends StatelessWidget {
           radius: 18.0,
           backgroundColor: Theme.of(context).accentColor,
           child: const Icon(
-            Icons.lock_outline,
-            size: 26.0,
+            Icons.merge_type,
+            size: 32.0,
           ),
         ),
         const SizedBox(height: 4.0),
         Text(
-          'PROXY',
+          'Proxy',
           style: Theme.of(context).textTheme.bodyText2,
         ),
       ],
