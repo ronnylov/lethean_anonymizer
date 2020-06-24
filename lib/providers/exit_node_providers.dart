@@ -25,6 +25,90 @@ class ExitNodeProviders with ChangeNotifier {
     return [..._countries];
   }
 
+  void setPaymentId(String providerId, String serviceId, String paymentId) {
+    final provider = _providers.firstWhere((p) => p.id == providerId);
+    if (provider.vpnServices != null && provider.vpnServices.isNotEmpty) {
+      final foundService = provider.vpnServices.firstWhere(
+        (vpnService) => vpnService.id == serviceId,
+        orElse: () {
+          // The serviceId was not found as VPN service, search Proxy services
+          if (provider.proxyServices != null &&
+              provider.proxyServices.isNotEmpty) {
+            return provider.proxyServices
+                .firstWhere((proxyService) => proxyService.id == serviceId);
+          } else {
+            return null; // The service does not exist
+          }
+        },
+      );
+      if (foundService != null) {
+        foundService.paymentId = paymentId;
+      }
+    }
+
+    notifyListeners();
+  }
+
+  ExitNodeService getServiceFromIds(String providerId, String serviceId) {
+    final provider = _providers.firstWhere((p) => p.id == providerId);
+    if (provider.vpnServices != null) {
+      final service = provider.vpnServices.firstWhere((s) => s.id == serviceId);
+      return ExitNodeService(
+        providerId: service.providerId,
+        providerName: service.providerName,
+        providerWallet: service.providerWallet,
+        providerCertContent: service.providerCertContent,
+        id: service.id,
+        name: service.name,
+        type: service.type,
+        cost: service.cost,
+        firstPrePaidMinutes: service.firstPrePaidMinutes,
+        firstVerificationsNeeded: service.firstVerificationsNeeded,
+        subsequentPrePaidMinutes: service.subsequentPrePaidMinutes,
+        subsequentVerificationsNeeded: service.subsequentPrePaidMinutes,
+        downloadSpeed: service.downloadSpeed,
+        uploadSpeed: service.uploadSpeed,
+        proxyEndpoint: service.proxyEndpoint,
+        proxyPort: service.proxyPort,
+        vpnEndpoint: service.vpnEndpoint,
+        vpnPort: service.vpnPort,
+        mSpeed: service.mSpeed,
+        mStability: service.mStability,
+        disable: service.disable,
+        paymentId: service.paymentId,
+      );
+    }
+    if (provider.proxyServices != null) {
+      final service =
+          provider.proxyServices.firstWhere((s) => s.id == serviceId);
+      return ExitNodeService(
+        providerId: service.providerId,
+        providerName: service.providerName,
+        providerWallet: service.providerWallet,
+        providerCertContent: service.providerCertContent,
+        id: service.id,
+        name: service.name,
+        type: service.type,
+        cost: service.cost,
+        firstPrePaidMinutes: service.firstPrePaidMinutes,
+        firstVerificationsNeeded: service.firstVerificationsNeeded,
+        subsequentPrePaidMinutes: service.subsequentPrePaidMinutes,
+        subsequentVerificationsNeeded: service.subsequentPrePaidMinutes,
+        downloadSpeed: service.downloadSpeed,
+        uploadSpeed: service.uploadSpeed,
+        proxyEndpoint: service.proxyEndpoint,
+        proxyPort: service.proxyPort,
+        vpnEndpoint: service.vpnEndpoint,
+        vpnPort: service.vpnPort,
+        mSpeed: service.mSpeed,
+        mStability: service.mStability,
+        disable: service.disable,
+        paymentId: service.paymentId,
+      );
+    }
+    return null;
+  }
+
   Future<void> fetchAndSetProviders() async {
     final result = await ApiHelpers.fetchExitNodes();
     if (result['providers'] != null) {

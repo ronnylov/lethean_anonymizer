@@ -4,6 +4,8 @@ All rights reserved.
 This source code is licensed under the BSD-style license found in the
 LICENSE file in the root directory of this source tree. */
 
+import 'dart:math' show Random;
+
 import 'package:flutter/material.dart';
 import 'package:lthn_vpn/models/exit_node_provider.dart';
 import 'package:provider/provider.dart';
@@ -113,6 +115,9 @@ class _ProviderListScreenState extends State<ProviderListScreen> {
               listen: false,
             ).fetchAndSetProviders();
           });
+
+          print(Random().nextInt(1<<32).toRadixString(16).padLeft(8, '0'));
+          print(Random().nextInt(0x1000000).toRadixString(16).padLeft(6, '0'));
 
           // Some code for testing detecting internet location of the device
           // final myIp = await ApiHelpers.fetchMyIp();

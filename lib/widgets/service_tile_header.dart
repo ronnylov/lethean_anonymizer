@@ -80,8 +80,7 @@ class ServiceTileHeader extends StatelessWidget {
                       : const Text('No rating'),
                 ],
               ),
-              Text(
-                  '${(_service.downloadSpeed ~/ 1000000)}/${(_service.uploadSpeed ~/ 1000000)} Mbps'),
+              Text('${(_service.downloadSpeed ~/ 1000000)} Mbit / s')
             ],
           ),
         ],
