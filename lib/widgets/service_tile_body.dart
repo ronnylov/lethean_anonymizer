@@ -10,7 +10,7 @@ import 'package:provider/provider.dart';
 import '../models/exit_node_service.dart';
 import '../providers/exit_node_providers.dart';
 
-class ServiceTileBody extends StatefulWidget {
+class ServiceTileBody extends StatelessWidget {
   const ServiceTileBody({
     Key key,
     ExitNodeService service,
@@ -19,11 +19,6 @@ class ServiceTileBody extends StatefulWidget {
 
   final ExitNodeService _service;
 
-  @override
-  _ServiceTileBodyState createState() => _ServiceTileBodyState();
-}
-
-class _ServiceTileBodyState extends State<ServiceTileBody> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -34,109 +29,124 @@ class _ServiceTileBodyState extends State<ServiceTileBody> {
         left: 20.0,
       ),
       width: double.infinity,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          const Divider(thickness: 2.0),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              const Text('1st PrePaid Mins'),
-              Text(
-                  '${widget._service.firstPrePaidMinutes * widget._service.cost} LTHN / ' +
-                      '${widget._service.firstPrePaidMinutes} mins'),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              const Text('Additional Mins'),
-              Text(
-                  '${widget._service.subsequentPrePaidMinutes * widget._service.cost} LTHN / ' +
-                      '${widget._service.subsequentPrePaidMinutes} mins'),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              const Text('Download Speed'),
-              Text('${widget._service.downloadSpeed ~/ 1000000} Mbit / s'),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              const Text('Upload Speed'),
-              Text('${widget._service.uploadSpeed ~/ 1000000} Mbit / s'),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              const Text('Endpoint'),
-              SelectableText(widget._service.proxyEndpoint != null
-                  ? '${widget._service.proxyEndpoint}'
-                  : widget._service.vpnEndpoint != null
-                      ? '${widget._service.vpnEndpoint}'
-                      : ''),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              const Text('Port'),
-              SelectableText(widget._service.proxyPort != null
-                  ? '${widget._service.proxyPort}'
-                  : widget._service.vpnPort != null
-                      ? '${widget._service.vpnPort}'
-                      : ''),
-            ],
-          ),
-          const SizedBox(height: 14),
-          const Text('Provider Id'),
-          SelectableText('${widget._service.providerId}'),
-          const SizedBox(height: 14),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              const Text('Service Id'),
-              SelectableText('${widget._service.id}'),
-            ],
-          ),
-          const SizedBox(height: 14),
-          const Text('Provider Wallet Address'),
-          SelectableText('${widget._service.providerWallet}'),
-          const SizedBox(height: 14),
-          const Divider(thickness: 2.0),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              const Text('Payment Id'),
-              IconButton(
-                  icon: Icon(Icons.refresh),
-                  onPressed: () {
-                    setState(() {
-                      final newPaymentId =
-                          ExitNodeService.generatePaymentId(widget._service.id);
-                      Provider.of<ExitNodeProviders>(context, listen: false)
-                          .setPaymentId(
-                        widget._service.providerId,
-                        widget._service.id,
-                        newPaymentId,
-                      );
-                    });
-                  }),
-              SelectableText('${widget._service.paymentId}'),
-            ],
-          ),
-          const Divider(thickness: 2.0),
-          const Text(
-              'For privacy reasons it is recommended to refresh Payment Id before making a new VPN connection.'),
-          const SizedBox(height: 14),
-          // const Text('First Payment'),
-          // const SizedBox(height: 14),
-        ],
+      child: Consumer<ExitNodeProviders>(
+        // Normally a consumer would use the data in builder
+        // (providers below) but here we just use it to rebuild widgets
+        // when the original data is changed.
+        // Most likely when provider id refresh button is pressed.
+        // But also if new data arrives from sdp server.
+        builder: (ctx, providers, child) => Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            const Divider(thickness: 2.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                const Text('1st PrePaid Mins'),
+                Text('${_service.firstPrePaidMinutes * _service.cost} LTHN / ' +
+                    '${_service.firstPrePaidMinutes} mins'),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                const Text('Additional Mins'),
+                Text(
+                    '${_service.subsequentPrePaidMinutes * _service.cost} LTHN / ' +
+                        '${_service.subsequentPrePaidMinutes} mins'),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                const Text('Download Speed'),
+                Text('${_service.downloadSpeed ~/ 1000000} Mbit / s'),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                const Text('Upload Speed'),
+                Text('${_service.uploadSpeed ~/ 1000000} Mbit / s'),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                const Text('Endpoint'),
+                SelectableText(_service.proxyEndpoint != null
+                    ? '${_service.proxyEndpoint}'
+                    : _service.vpnEndpoint != null
+                        ? '${_service.vpnEndpoint}'
+                        : ''),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                const Text('Port'),
+                SelectableText(_service.proxyPort != null
+                    ? '${_service.proxyPort}'
+                    : _service.vpnPort != null ? '${_service.vpnPort}' : ''),
+              ],
+            ),
+            const SizedBox(height: 14),
+            const Text('Provider Id'),
+            SelectableText('${_service.providerId}'),
+            const SizedBox(height: 14),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                const Text('Service Id'),
+                SelectableText('${_service.id}'),
+              ],
+            ),
+            const SizedBox(height: 14),
+            const Text('Provider Wallet Address'),
+            SelectableText('${_service.providerWallet}'),
+            const SizedBox(height: 14),
+            const Divider(thickness: 2.0),
+            if (_service.vpnEndpoint != null && _service.vpnPort != null)
+              ...buildVpnInstructions(context),
+            if (_service.proxyEndpoint != null && _service.proxyPort != null)
+              Text('Lethean Proxy is not supported on mobile devices.'),
+          ],
+        ),
       ),
     );
+  }
+
+  List<Widget> buildVpnInstructions(BuildContext context) {
+    return [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          const Text('Payment Id'),
+          CircleAvatar(
+            backgroundColor: Theme.of(context).accentColor,
+            child: IconButton(
+                padding: EdgeInsets.zero,
+                icon: Icon(Icons.refresh),
+                onPressed: () {
+                  final newPaymentId =
+                      ExitNodeService.generatePaymentId(_service.id);
+                  Provider.of<ExitNodeProviders>(context, listen: false)
+                      .setPaymentId(
+                    _service.providerId,
+                    _service.id,
+                    newPaymentId,
+                  );
+                }),
+          ),
+          SelectableText('${_service.paymentId}'),
+        ],
+      ),
+      const Divider(thickness: 2.0),
+      const Text(
+          'For privacy reasons it is recommended to refresh Payment Id before making a new VPN connection.'),
+      const SizedBox(height: 14),
+      // const Text('First Payment'),
+      // const SizedBox(height: 14),
+    ];
   }
 }
