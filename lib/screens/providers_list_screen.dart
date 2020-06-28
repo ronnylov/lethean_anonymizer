@@ -87,9 +87,6 @@ class _ProviderListScreenState extends State<ProviderListScreen> {
                         WorldMap(
                           mapMarkers: _markers,
                         ),
-                        SizedBox(
-                          height: 6,
-                        ), // Add some vertical spacing
                         Expanded(
                           // Was necessary to wrap this in Expanded
                           // to avoid error in Column
@@ -116,7 +113,7 @@ class _ProviderListScreenState extends State<ProviderListScreen> {
             ).fetchAndSetProviders();
           });
 
-          print(Random().nextInt(1<<32).toRadixString(16).padLeft(8, '0'));
+          print(Random().nextInt(1 << 32).toRadixString(16).padLeft(8, '0'));
           print(Random().nextInt(0x1000000).toRadixString(16).padLeft(6, '0'));
 
           // Some code for testing detecting internet location of the device

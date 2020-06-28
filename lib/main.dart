@@ -10,6 +10,7 @@ import 'package:provider/provider.dart';
 import './providers/exit_node_providers.dart';
 import './screens/providers_list_screen.dart';
 import './screens/services_list_screen.dart';
+import './screens/vpn_instruction_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
         home: ProviderListScreen(),
         routes: {
           ServicesListScreen.routeName: (ctx) => ServicesListScreen(),
+          VpnInstructionScreen.routeName: (ctx) => VpnInstructionScreen(),
         },
       ),
     );

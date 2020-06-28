@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 
 import '../models/exit_node_service.dart';
 import '../providers/exit_node_providers.dart';
+import '../screens/vpn_instruction_screen.dart';
 
 class ServiceTileBody extends StatelessWidget {
   const ServiceTileBody({
@@ -38,7 +39,7 @@ class ServiceTileBody extends StatelessWidget {
         builder: (ctx, providers, child) => Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            const Divider(thickness: 2.0),
+            // const Divider(thickness: 2.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -105,48 +106,38 @@ class ServiceTileBody extends StatelessWidget {
             const Text('Provider Wallet Address'),
             SelectableText('${_service.providerWallet}'),
             const SizedBox(height: 14),
-            const Divider(thickness: 2.0),
+            // const Divider(thickness: 2.0),
             if (_service.vpnEndpoint != null && _service.vpnPort != null)
-              ...buildVpnInstructions(context),
+              Card(
+                child: ListTile(
+                  leading: Icon(
+                    Icons.info_outline,
+                    color: Theme.of(context).accentIconTheme.color,
+                  ),
+                  title: Text(
+                    'How to use this VPN',
+                    style: Theme.of(context).accentTextTheme.button,
+                  ),
+                  trailing: Icon(
+                    Icons.arrow_forward_ios,
+                    color: Theme.of(context).accentIconTheme.color,
+                  ),
+                  onTap: () {
+                    Navigator.pushNamed(
+                      context,
+                      VpnInstructionScreen.routeName,
+                      arguments: _service,
+                    );
+                  },
+                ),
+                color: Theme.of(context).accentColor,
+                elevation: 2,
+              ),
             if (_service.proxyEndpoint != null && _service.proxyPort != null)
               Text('Lethean Proxy is not supported on mobile devices.'),
           ],
         ),
       ),
     );
-  }
-
-  List<Widget> buildVpnInstructions(BuildContext context) {
-    return [
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          const Text('Payment Id'),
-          CircleAvatar(
-            backgroundColor: Theme.of(context).accentColor,
-            child: IconButton(
-                padding: EdgeInsets.zero,
-                icon: Icon(Icons.refresh),
-                onPressed: () {
-                  final newPaymentId =
-                      ExitNodeService.generatePaymentId(_service.id);
-                  Provider.of<ExitNodeProviders>(context, listen: false)
-                      .setPaymentId(
-                    _service.providerId,
-                    _service.id,
-                    newPaymentId,
-                  );
-                }),
-          ),
-          SelectableText('${_service.paymentId}'),
-        ],
-      ),
-      const Divider(thickness: 2.0),
-      const Text(
-          'For privacy reasons it is recommended to refresh Payment Id before making a new VPN connection.'),
-      const SizedBox(height: 14),
-      // const Text('First Payment'),
-      // const SizedBox(height: 14),
-    ];
   }
 }
