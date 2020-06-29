@@ -25,6 +25,7 @@ class VpnInstructionScreen extends StatelessWidget {
           title: Text('${_service.name}'),
         ),
         body: Card(
+          elevation: 4.0,
           margin: EdgeInsets.all(6.0),
           child: Container(
             padding: const EdgeInsets.only(
@@ -34,58 +35,104 @@ class VpnInstructionScreen extends StatelessWidget {
               left: 20.0,
             ),
             width: double.infinity,
-            child: Column(children: [
-              Container(
-                width: double.infinity,
-                child: RaisedButton.icon(
-                  color: Theme.of(context).accentColor,
-                  textTheme: ButtonTextTheme.primary,
-                  onPressed: () async {
-                    var template = await DefaultAssetBundle.of(context)
-                        .loadString('assets/openvpn_client_template.txt');
-                    final String replaced =
-                        template.replaceAll('{ip}', '${_service.vpnEndpoint}');
-                    print(replaced);
-                  },
-                  icon: const Icon(Icons.save),
-                  label: const Text('Save OpenVPN Configuration File'),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text(
+                      'Save OpenVPN Configuration File',
+                      style: Theme.of(context).primaryTextTheme.subtitle1,
+                    ),
+                    CircleAvatar(
+                      backgroundColor: Theme.of(context).accentColor,
+                      child: IconButton(
+                          padding: EdgeInsets.zero,
+                          icon: Icon(Icons.save),
+                          onPressed: () async {
+                            var template = await DefaultAssetBundle.of(context)
+                                .loadString(
+                                    'assets/openvpn_client_template.txt');
+                            template = template.replaceAll(
+                                '{ip}', '${_service.vpnEndpoint}');
+                            template = template.replaceAll(
+                                '{port}', '${_service.vpnPort.split('/')[0]}');
+                            template = template.replaceAll('{proto}',
+                                '${_service.vpnPort.split('/')[1].toLowerCase()}');
+                            template = template.replaceAll('{tundev}', 'tun1');
+                            template = template.replaceAll('{comment_dn}', '');
+                            template = template.replaceAll(
+                                '{tunnode}', '/dev/net/tun');
+                            template = template.replaceAll('{mtu}', '1400');
+                            template = template.replaceAll('{mssfix}', '1300');
+                            template = template.replaceAll(
+                                '{auth_file}', ''); // We could use this!
+                            template =
+                                template.replaceAll('{pull_filters}', '');
+                            template =
+                                template.replaceAll('{mgmt_comment}', '');
+                            template = template.replaceAll(
+                                '{mgmt_sock}', '127.0.0.1 11193');
+                            template =
+                                template.replaceAll('{hproxy_comment}', '#');
+                            template = template.replaceAll('{http_proxy}', '');
+                            template =
+                                template.replaceAll('{http_proxy_port}', '');
+                            template =
+                                template.replaceAll('{comment_syslog}', '');
+                            template = template.replaceAll('{rgw_comment}', '');
+                            template =
+                                template.replaceAll('{bdns_comment}', '#');
+                            template = template.replaceAll('{f_ca}',
+                                '${utf8.decode(base64.decode(_service.providerCertContent))}');
+                            print(template);
+                          }),
+                    ),
+                  ],
                 ),
-              ),
-              const Divider(thickness: 2.0),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  const Text('Payment Id'),
-                  CircleAvatar(
-                    backgroundColor: Theme.of(context).accentColor,
-                    child: IconButton(
-                        padding: EdgeInsets.zero,
-                        icon: Icon(Icons.refresh),
-                        onPressed: () {
-                          final newPaymentId =
-                              ExitNodeService.generatePaymentId(_service.id);
-                          Provider.of<ExitNodeProviders>(context, listen: false)
-                              .setPaymentId(
-                            _service.providerId,
-                            _service.id,
-                            newPaymentId,
-                          );
-                        }),
-                  ),
-                  SelectableText('${_service.paymentId}'),
-                ],
-              ),
-              const Divider(thickness: 2.0),
-              const Text(
-                  'For privacy reasons it is recommended to refresh Payment Id before making a new VPN connection.'),
-              const SizedBox(height: 14),
-              // const Text('Decoded CA'),
-              // SelectableText(
-              //   utf8.decode(
-              //     base64.decode(_service.providerCertContent),
-              //   ),
-              // ),
-            ]),
+                const SizedBox(height: 14),
+                const Divider(thickness: 2.0),
+                const SizedBox(height: 14),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text(
+                      'Payment Id',
+                      style: Theme.of(context).primaryTextTheme.subtitle1,
+                    ),
+                    SelectableText(
+                      '${_service.paymentId}',
+                      style: Theme.of(context).primaryTextTheme.subtitle1,
+                    ),
+                    CircleAvatar(
+                      backgroundColor: Theme.of(context).accentColor,
+                      child: IconButton(
+                          padding: EdgeInsets.zero,
+                          icon: Icon(Icons.refresh),
+                          onPressed: () {
+                            final newPaymentId =
+                                ExitNodeService.generatePaymentId(_service.id);
+                            Provider.of<ExitNodeProviders>(context,
+                                    listen: false)
+                                .setPaymentId(
+                              _service.providerId,
+                              _service.id,
+                              newPaymentId,
+                            );
+                          }),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 14),
+                const Text(
+                    'For privacy reasons it is recommended to refresh Payment Id' +
+                        ' before making a new VPN connection.'),
+                const SizedBox(height: 14),
+                const Divider(thickness: 2.0),
+                const SizedBox(height: 14),
+              ],
+            ),
           ),
         ),
       ),
