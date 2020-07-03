@@ -66,9 +66,9 @@ class ExitNodeProviderTile extends StatelessWidget {
       ),
       elevation: 4,
       margin: const EdgeInsets.all(6),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
-      ),
+      // shape: RoundedRectangleBorder(
+      //   borderRadius: BorderRadius.circular(8),
+      // ),
     );
   }
 }

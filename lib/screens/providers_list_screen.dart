@@ -90,11 +90,23 @@ class _ProviderListScreenState extends State<ProviderListScreen> {
                         Expanded(
                           // Was necessary to wrap this in Expanded
                           // to avoid error in Column
-                          child: ListView.builder(
-                            itemCount: _currentNodeList.length,
-                            itemBuilder: (context, index) =>
-                                ExitNodeProviderTile(
-                                    currentNode: _currentNodeList[index]),
+                          child: Scrollbar(
+                            child: RefreshIndicator(
+                              onRefresh: () {
+                                _refresh = Provider.of<ExitNodeProviders>(
+                                  context,
+                                  listen: false,
+                                ).fetchAndSetProviders();
+                                return _refresh;
+                              },
+                              child: ListView.builder(
+                                physics: const AlwaysScrollableScrollPhysics(),
+                                itemCount: _currentNodeList.length,
+                                itemBuilder: (context, index) =>
+                                    ExitNodeProviderTile(
+                                        currentNode: _currentNodeList[index]),
+                              ),
+                            ),
                           ),
                         ),
                       ],
@@ -103,25 +115,25 @@ class _ProviderListScreenState extends State<ProviderListScreen> {
           },
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.refresh),
-        onPressed: () async {
-          setState(() {
-            _refresh = Provider.of<ExitNodeProviders>(
-              context,
-              listen: false,
-            ).fetchAndSetProviders();
-          });
+      // floatingActionButton: FloatingActionButton(
+      //   child: Icon(Icons.refresh),
+      //   onPressed: () async {
+      //     setState(() {
+      //       _refresh = Provider.of<ExitNodeProviders>(
+      //         context,
+      //         listen: false,
+      //       ).fetchAndSetProviders();
+      //     });
 
-          // Some code for testing detecting internet location of the device
-          // final myIp = await ApiHelpers.fetchMyIp();
-          // final myCountryMap = await ApiHelpers.fetchCountryFromIp(myIp);
-          // final myCountry = Country.fromJson(myCountryMap);
-          // print('Country: ' + myCountry.name + ' ' + myCountry.code);
-          // print('Latitude: ' + myCountry.latitude.toString());
-          // print('Longitude: ' + myCountry.longitude.toString());
-        },
-      ),
+      // Some code for testing detecting internet location of the device
+      // final myIp = await ApiHelpers.fetchMyIp();
+      // final myCountryMap = await ApiHelpers.fetchCountryFromIp(myIp);
+      // final myCountry = Country.fromJson(myCountryMap);
+      // print('Country: ' + myCountry.name + ' ' + myCountry.code);
+      // print('Latitude: ' + myCountry.latitude.toString());
+      // print('Longitude: ' + myCountry.longitude.toString());
+      //   },
+      // ),
     );
   }
 }

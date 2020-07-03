@@ -27,9 +27,9 @@ class WorldMap extends StatelessWidget {
           elevation: 4,
           margin: const EdgeInsets.all(6.0),
           clipBehavior: Clip.antiAlias,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-          ),
+          // shape: RoundedRectangleBorder(
+          //   borderRadius: BorderRadius.circular(8),
+          // ),
           child: Container(
             height: 200,
             child: FlutterMap(
