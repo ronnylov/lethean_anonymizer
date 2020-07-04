@@ -24,18 +24,22 @@ class SaveOvpnFileButton extends StatelessWidget {
 
   final ExitNodeService _service;
 
-  String _convertOvpnTemplate(String template, ExitNodeService _service) {
-    template = template.replaceAll('{ip}', '${_service.vpnEndpoint}');
+  String _convertOvpnTemplate(
+    String template,
+    ExitNodeService service,
+    String authFile,
+  ) {
+    template = template.replaceAll('{ip}', '${service.vpnEndpoint}');
     template =
-        template.replaceAll('{port}', '${_service.vpnPort.split('/')[0]}');
+        template.replaceAll('{port}', '${service.vpnPort.split('/')[0]}');
     template = template.replaceAll(
-        '{proto}', '${_service.vpnPort.split('/')[1].toLowerCase()}');
+        '{proto}', '${service.vpnPort.split('/')[1].toLowerCase()}');
     template = template.replaceAll('{tundev}', 'tun1');
     template = template.replaceAll('{comment_dn}', '');
     template = template.replaceAll('{tunnode}', '/dev/net/tun');
     template = template.replaceAll('{mtu}', '1400');
     template = template.replaceAll('{mssfix}', '1300');
-    template = template.replaceAll('{auth_file}', ''); // We could use this!
+    template = template.replaceAll('{auth_file}', authFile);
     template = template.replaceAll('{pull_filters}', '');
     template = template.replaceAll('{mgmt_comment}', '');
     template = template.replaceAll('{mgmt_sock}', '127.0.0.1 11193');
@@ -60,7 +64,8 @@ class SaveOvpnFileButton extends StatelessWidget {
           onPressed: () async {
             var template = await DefaultAssetBundle.of(context)
                 .loadString('assets/openvpn_client_template.txt');
-            template = _convertOvpnTemplate(template, _service);
+             // Replace '' with authfile path below
+            template = _convertOvpnTemplate(template, _service, '');
             var status = await Permission.storage.request();
             final extDir = await ExtStorage.getExternalStoragePublicDirectory(
                 ExtStorage.DIRECTORY_DOWNLOADS);
