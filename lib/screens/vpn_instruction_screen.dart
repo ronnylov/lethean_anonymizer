@@ -10,7 +10,7 @@ import 'package:provider/provider.dart';
 import '../providers/exit_node_providers.dart';
 import '../models/exit_node_service.dart';
 import '../widgets/vpn_instruction_header.dart';
-import '../widgets/save_ovpn_file_buton.dart';
+import '../widgets/save_ovpn_file_button.dart';
 
 class VpnInstructionScreen extends StatelessWidget {
   static const routeName = '/vpn-instruction';
