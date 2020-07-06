@@ -62,10 +62,6 @@ class SaveOvpnFileButton extends StatelessWidget {
           padding: EdgeInsets.zero,
           icon: Icon(Icons.save),
           onPressed: () async {
-            var template = await DefaultAssetBundle.of(context)
-                .loadString('assets/openvpn_client_template.txt');
-             // Replace '' with authfile path below
-            template = _convertOvpnTemplate(template, _service, '');
             var status = await Permission.storage.request();
             final extDir = await ExtStorage.getExternalStoragePublicDirectory(
                 ExtStorage.DIRECTORY_DOWNLOADS);
@@ -74,6 +70,9 @@ class SaveOvpnFileButton extends StatelessWidget {
                   extDir, _service.providerName + '_' + _service.id + '.ovpn');
               filePath = filePath.trim().replaceAll(' ', '_');
               final ovpnFile = File(filePath);
+              var template = await DefaultAssetBundle.of(context)
+                  .loadString('assets/openvpn_client_template.txt');
+              template = _convertOvpnTemplate(template, _service, '');
               await ovpnFile.writeAsString(template, flush: true);
               await showDialog(
                   context: context,

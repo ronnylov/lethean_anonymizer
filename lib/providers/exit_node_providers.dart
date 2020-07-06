@@ -43,10 +43,9 @@ class ExitNodeProviders with ChangeNotifier {
       );
       if (foundService != null) {
         foundService.paymentId = paymentId;
+        notifyListeners();
       }
     }
-
-    notifyListeners();
   }
 
   ExitNodeService getServiceFromIds(String providerId, String serviceId) {
