@@ -46,6 +46,7 @@ dev_dependencies:
     sdk: flutter
 
   flutter_launcher_icons: ^0.7.5
+  flutter_native_splash: ^0.1.9
 
 
 flutter_icons:
@@ -54,6 +55,11 @@ flutter_icons:
   image_path: "assets/icon/golden-helmet.png"
   adaptive_icon_background: "#18202D"
   adaptive_icon_foreground: "assets/icon/golden-helmet-adaptive.png"
+
+flutter_native_splash:
+  image: assets/splash/lethean-splash.png
+  color: "#18202D"
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
