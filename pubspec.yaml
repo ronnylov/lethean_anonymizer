@@ -34,7 +34,7 @@ dependencies:
   flutter_map: any # or the latest version on Pub
   latlong: ^0.6.1
   flutter_rating_bar: ^3.0.1+1
-  url_launcher: ^5.4.11
+  url_launcher: ^5.5.0
   path: ^1.6.4
   path_provider: ^1.6.11
   permission_handler: ^5.0.1+1
