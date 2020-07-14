@@ -42,7 +42,7 @@ class _ProviderListScreenState extends State<ProviderListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Lethean VPN Exit Nodes'),
+        title: const Text('Lethean Anonymizer'),
       ),
       body: Consumer<ExitNodeProviders>(
         builder: (ctx, exitNode, _) => FutureBuilder<void>(
