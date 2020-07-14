@@ -1,4 +1,4 @@
-package com.example.lthn_vpn
+package io.lethean.anonymizer
 
 import io.flutter.embedding.android.FlutterActivity
 
