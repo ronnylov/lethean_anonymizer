@@ -23,67 +23,87 @@ class ServiceTileHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      dense: false,
-      isThreeLine: true,
-      leading: _badge,
-      title: Text(
-        _service.name,
-        style: Theme.of(context).textTheme.subtitle1,
-      ),
-      subtitle: Column(
-        children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Row(
-                children: <Widget>[
-                  const Text('Stability '),
-                  _service.mStability != null
-                      ? RatingBarIndicator(
-                          rating: _service.mStability,
-                          itemCount: 5,
-                          itemSize: 14,
-                          direction: Axis.horizontal,
-                          itemBuilder: (ctx, index) => Icon(
-                            Icons.star,
-                            color: Colors.amber,
-                          ),
-                        )
-                      : const Text('No rating'),
-                ],
-              ),
-              Text('${_service.cost} LTHN / min')
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  const Text('Speed'),
-                  const SizedBox(
-                    width: 15,
+    return ListTileTheme(
+      contentPadding: EdgeInsets.symmetric(vertical: 4.0, horizontal: 16.0),
+      textColor: Colors.white70,
+      child: ListTile(
+        dense: false,
+        isThreeLine: true,
+        leading: _badge,
+        title: Text(
+          _service.name,
+          style: Theme.of(context).textTheme.subtitle1,
+        ),
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Row(
+              children: <Widget>[
+                Container(
+                  width: 55,
+                  child: const Text('Stability'),
+                ),
+                _service.mStability != null
+                    ? RatingBarIndicator(
+                        rating: _service.mStability,
+                        itemCount: 5,
+                        itemSize: 14,
+                        direction: Axis.horizontal,
+                        itemBuilder: (ctx, index) => Icon(
+                          Icons.star,
+                          color: Colors.amber,
+                        ),
+                      )
+                    : Text(
+                        'No rating',
+                        style: TextStyle(
+                          color: Theme.of(context).textTheme.bodyText2.color,
+                        ),
+                      ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                  width: 55,
+                  child: const Text('Speed'),
+                ),
+                _service.mSpeed != null
+                    ? RatingBarIndicator(
+                        rating: _service.mSpeed,
+                        itemCount: 5,
+                        itemSize: 14,
+                        direction: Axis.horizontal,
+                        itemBuilder: (ctx, index) => Icon(
+                          Icons.star,
+                          color: Colors.amber,
+                        ),
+                      )
+                    : Text(
+                        'No rating',
+                        style: TextStyle(
+                          color: Theme.of(context).textTheme.bodyText2.color,
+                        ),
+                      ),
+              ],
+            ),
+            Row(
+              children: <Widget>[
+                Container(
+                  width: 55,
+                  child: const Text('Price'),
+                ),
+                Text(
+                  '${_service.cost} LTHN / min',
+                  style: TextStyle(
+                    color: Theme.of(context).textTheme.bodyText2.color,
                   ),
-                  _service.mSpeed != null
-                      ? RatingBarIndicator(
-                          rating: _service.mSpeed,
-                          itemCount: 5,
-                          itemSize: 14,
-                          direction: Axis.horizontal,
-                          itemBuilder: (ctx, index) => Icon(
-                            Icons.star,
-                            color: Colors.amber,
-                          ),
-                        )
-                      : const Text('No rating'),
-                ],
-              ),
-              Text('${(_service.downloadSpeed ~/ 1000000)} Mbit / s')
-            ],
-          ),
-        ],
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -31,6 +31,10 @@ class MyApp extends StatelessWidget {
           cardColor: LetheanColors.lthndarkbluegreen[900],
           brightness: Brightness.dark,
           visualDensity: VisualDensity.adaptivePlatformDensity,
+          textTheme: TextTheme(
+            bodyText1: TextStyle(color: Colors.white70),
+            bodyText2: TextStyle(color: Colors.white),
+          ),
         ),
         home: ProviderListScreen(),
         routes: {

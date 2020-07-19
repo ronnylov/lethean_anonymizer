@@ -43,7 +43,10 @@ class ServiceTileBody extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                const Text('1st PrePaid Mins'),
+                Text(
+                  '1st PrePaid Mins',
+                  style: Theme.of(context).textTheme.bodyText1,
+                ),
                 Text('${_service.firstPrePaidMinutes * _service.cost} LTHN / ' +
                     '${_service.firstPrePaidMinutes} mins'),
               ],
@@ -51,7 +54,10 @@ class ServiceTileBody extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                const Text('Additional Mins'),
+                Text(
+                  'Additional Mins',
+                  style: Theme.of(context).textTheme.bodyText1,
+                ),
                 Text(
                     '${_service.subsequentPrePaidMinutes * _service.cost} LTHN / ' +
                         '${_service.subsequentPrePaidMinutes} mins'),
@@ -60,21 +66,30 @@ class ServiceTileBody extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                const Text('Download Speed'),
+                Text(
+                  'Download Speed',
+                  style: Theme.of(context).textTheme.bodyText1,
+                ),
                 Text('${_service.downloadSpeed ~/ 1000000} Mbit / s'),
               ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                const Text('Upload Speed'),
+                Text(
+                  'Upload Speed',
+                  style: Theme.of(context).textTheme.bodyText1,
+                ),
                 Text('${_service.uploadSpeed ~/ 1000000} Mbit / s'),
               ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                const Text('Endpoint'),
+                Text(
+                  'Endpoint',
+                  style: Theme.of(context).textTheme.bodyText1,
+                ),
                 SelectableText(_service.proxyEndpoint != null
                     ? '${_service.proxyEndpoint}'
                     : _service.vpnEndpoint != null
@@ -85,25 +100,37 @@ class ServiceTileBody extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                const Text('Port'),
+                Text(
+                  'Port',
+                  style: Theme.of(context).textTheme.bodyText1,
+                ),
                 SelectableText(_service.proxyPort != null
                     ? '${_service.proxyPort}'
                     : _service.vpnPort != null ? '${_service.vpnPort}' : ''),
               ],
             ),
             const SizedBox(height: 14),
-            const Text('Provider Id'),
+            Text(
+              'Provider Id',
+              style: Theme.of(context).textTheme.bodyText1,
+            ),
             SelectableText('${_service.providerId}'),
             const SizedBox(height: 14),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                const Text('Service Id'),
+                Text(
+                  'Service Id',
+                  style: Theme.of(context).textTheme.bodyText1,
+                ),
                 SelectableText('${_service.id}'),
               ],
             ),
             const SizedBox(height: 14),
-            const Text('Provider Wallet Address'),
+            Text(
+              'Provider Wallet Address',
+              style: Theme.of(context).textTheme.bodyText1,
+            ),
             SelectableText('${_service.providerWallet}'),
             const SizedBox(height: 14),
             // const Divider(thickness: 2.0),
@@ -134,7 +161,10 @@ class ServiceTileBody extends StatelessWidget {
                 elevation: 2,
               ),
             if (_service.proxyEndpoint != null && _service.proxyPort != null)
-              Text('Lethean Proxy is not supported on mobile devices.'),
+              Text(
+                'Lethean Proxy is not supported on mobile devices.',
+                style: Theme.of(context).textTheme.bodyText1,
+              ),
           ],
         ),
       ),
