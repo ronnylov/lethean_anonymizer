@@ -57,16 +57,18 @@ class VpnInstructionScreen extends StatelessWidget {
                                 'Save OpenVPN Configuration',
                                 style: Theme.of(context)
                                     .primaryTextTheme
-                                    .subtitle1
-                                    .apply(color: Colors.white70),
+                                    .subtitle1,
                               ),
                               SaveOvpnFileButton(service: _service),
                             ],
                           ),
                           const SizedBox(height: 14),
-                          const Text('Press save icon to save the OpenVPN configuration' +
-                              ' to Download directory. Then import this file to your OpenVPN app.' +
-                              ' Verified to work with OpenVPN Connect and OpenVPN for Android.'),
+                          Text(
+                            'Press save icon to save the OpenVPN configuration' +
+                                ' to Download directory. Then import this file to your OpenVPN app.' +
+                                ' Verified to work with OpenVPN Connect and OpenVPN for Android.',
+                            style: Theme.of(context).textTheme.bodyText1,
+                          ),
                           const SizedBox(height: 14),
                           const Divider(thickness: 2.0),
                           const SizedBox(height: 14),
@@ -75,13 +77,6 @@ class VpnInstructionScreen extends StatelessWidget {
                             children: <Widget>[
                               Text(
                                 'Payment Id',
-                                style: Theme.of(context)
-                                    .primaryTextTheme
-                                    .subtitle1
-                                    .apply(color: Colors.white70),
-                              ),
-                              SelectableText(
-                                '${_service.paymentId}',
                                 style: Theme.of(context)
                                     .primaryTextTheme
                                     .subtitle1,
@@ -106,32 +101,41 @@ class VpnInstructionScreen extends StatelessWidget {
                               ),
                             ],
                           ),
+                          SelectableText('${_service.paymentId}'),
                           const SizedBox(height: 14),
-                          const Text(
-                              'For privacy reasons it is recommended to refresh Payment Id' +
-                                  ' before making a new VPN connection.'),
+                          Text(
+                            'For privacy reasons it is' +
+                                ' recommended to refresh Payment Id' +
+                                ' before making a new VPN connection.',
+                            style: Theme.of(context).textTheme.bodyText1,
+                          ),
                           const SizedBox(height: 14),
                           const Divider(thickness: 2.0),
                           const SizedBox(height: 14),
                           Text(
                             'First Payment',
-                            style: Theme.of(context)
-                                .primaryTextTheme
-                                .subtitle1
-                                .apply(
-                                  color: Colors.white70,
-                                ),
+                            style: Theme.of(context).primaryTextTheme.subtitle1,
                           ),
                           const SizedBox(height: 14),
-                          Text('First payment of ${_service.cost * _service.firstPrePaidMinutes} LTHN' +
-                              ' gets you ${_service.firstPrePaidMinutes}' +
-                              ' minutes of VPN subscription. Payment is made by using Lethean' +
-                              ' cryptocurrency LTHN. Payments are not yet implemented in this app.' +
-                              ' You can use any official Lethean wallet to pay e.g. desktop GUI or CLI.'),
+                          Text(
+                            'First payment of ' +
+                                '${_service.cost * _service.firstPrePaidMinutes}' +
+                                ' LTHN gets you ' +
+                                '${_service.firstPrePaidMinutes} minutes ' +
+                                ' of VPN subscription. Payment is made by' +
+                                ' using Lethean cryptocurrency LTHN. ' +
+                                'Payments are not yet implemented in this app.' +
+                                ' You can use any official Lethean wallet to pay' +
+                                ' e.g. desktop GUI or CLI.',
+                            style: Theme.of(context).textTheme.bodyText1,
+                          ),
                           const SizedBox(height: 14),
-                          const Text(
-                              'Lethean command line wallet or Discord tipbot command format :\n' +
-                                  'transfer <Address> <Amount> <Payment Id>'),
+                          Text(
+                            'Lethean command line wallet or Discord tipbot' +
+                                ' command format :\n' +
+                                'transfer <Address> <Amount> <Payment Id>',
+                            style: Theme.of(context).textTheme.bodyText1,
+                          ),
                           const SizedBox(height: 14),
                           SelectableText('transfer ${_service.providerWallet} ' +
                               '${_service.cost * _service.firstPrePaidMinutes} ' +
@@ -141,33 +145,36 @@ class VpnInstructionScreen extends StatelessWidget {
                           const SizedBox(height: 14),
                           Text(
                             'Connect to VPN',
-                            style: Theme.of(context)
-                                .primaryTextTheme
-                                .subtitle1
-                                .apply(
-                                  color: Colors.white70,
-                                ),
+                            style: Theme.of(context).primaryTextTheme.subtitle1,
                           ),
                           const SizedBox(height: 14),
-                          const Text(
-                              'Use the VPN profile that was created in the ' +
-                                  'OpenVPN app when importing the file.' +
-                                  ' You need to login with Payment Id :'),
+                          Text(
+                            'Use the VPN profile that was created in the ' +
+                                'OpenVPN app when importing the file.' +
+                                ' You need to login with Payment Id :',
+                            style: Theme.of(context).textTheme.bodyText1,
+                          ),
                           const SizedBox(height: 14),
                           Row(
                             children: <Widget>[
-                              Text(
-                                'Username : ',
-                                style: TextStyle(color: Colors.white70),
+                              Container(
+                                width: 80.0,
+                                child: Text(
+                                  'Username : ',
+                                  style: Theme.of(context).textTheme.bodyText1,
+                                ),
                               ),
                               SelectableText('${_service.paymentId}'),
                             ],
                           ),
                           Row(
                             children: <Widget>[
-                              Text(
-                                'Password : ',
-                                style: TextStyle(color: Colors.white70),
+                              Container(
+                                width: 80.0,
+                                child: Text(
+                                  'Password : ',
+                                  style: Theme.of(context).textTheme.bodyText1,
+                                ),
                               ),
                               SelectableText('${_service.paymentId}'),
                             ],
@@ -177,19 +184,18 @@ class VpnInstructionScreen extends StatelessWidget {
                           const SizedBox(height: 14),
                           Text(
                             'Additional Payments',
-                            style: Theme.of(context)
-                                .primaryTextTheme
-                                .subtitle1
-                                .apply(
-                                  color: Colors.white70,
-                                ),
+                            style: Theme.of(context).primaryTextTheme.subtitle1,
                           ),
                           const SizedBox(height: 14),
-                          Text('Additional payment of ${_service.cost * _service.subsequentPrePaidMinutes}' +
-                              ' LTHN adds ${_service.subsequentPrePaidMinutes}' +
-                              ' minutes to your VPN subscription.' +
-                              ' Pay before previous subscription period ends. ' +
-                              'Use the same Payment Id as used on first payment.'),
+                          Text(
+                            'Additional payment of ' +
+                                '${_service.cost * _service.subsequentPrePaidMinutes}' +
+                                ' LTHN adds ${_service.subsequentPrePaidMinutes}' +
+                                ' minutes to your VPN subscription.' +
+                                ' Pay before previous subscription period ends. ' +
+                                'Use the same Payment Id as used on first payment.',
+                            style: Theme.of(context).textTheme.bodyText1,
+                          ),
                           const SizedBox(height: 14),
                           SelectableText('transfer ${_service.providerWallet} ' +
                               '${_service.cost * _service.subsequentPrePaidMinutes} ' +
