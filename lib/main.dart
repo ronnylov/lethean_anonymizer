@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => ExitNodeProviders(),
       child: MaterialApp(
-        title: 'Lethean VPN',
+        title: 'Lethean Anonymizer',
         theme: ThemeData(
           scaffoldBackgroundColor: LetheanColors.lthnbackground,
           primarySwatch: LetheanColors.lthnbluegreen,
