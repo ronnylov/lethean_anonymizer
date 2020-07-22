@@ -1,4 +1,4 @@
-# lthn_vpn
+# lethean_anonymizer
 
 Mobile solution for Lethean VPN
 
