@@ -1,6 +1,6 @@
 name: lethean_anonymizer
 description: Lethean Anonymizer is a tool to view information about the VPN exit nodes of Lethean VPN. See https://lethean.io
-homepage: https://github.com/ronnylov/lthn_vpn
+homepage: https://github.com/ronnylov/lethean_anonymizer
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
