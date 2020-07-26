@@ -33,6 +33,7 @@ class _ServicesListScreenState extends State<ServicesListScreen> {
       ),
       body: Column(
         children: <Widget>[
+          SizedBox(height: 6.0),
           Card(
             key: Key(_exitNode.id),
             child: ListTile(

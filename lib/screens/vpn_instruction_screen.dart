@@ -29,6 +29,7 @@ class VpnInstructionScreen extends StatelessWidget {
         ),
         body: Column(
           children: <Widget>[
+            SizedBox(height: 6.0),
             VpnInstructionHeader(
               country: _country,
               service: _service,

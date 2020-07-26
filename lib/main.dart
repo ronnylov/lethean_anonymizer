@@ -25,6 +25,8 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Lethean Anonymizer',
         theme: ThemeData(
+          appBarTheme: AppBarTheme(color: LetheanColors.lthnbackground),
+          // appBarTheme: AppBarTheme(color: LetheanColors.lthndarkbluegreen[700]),
           scaffoldBackgroundColor: LetheanColors.lthnbackground,
           primarySwatch: LetheanColors.lthnbluegreen,
           accentColor: LetheanColors.lthnblue,

@@ -13,6 +13,7 @@ import '../providers/exit_node_providers.dart';
 import '../widgets/exit_node_provider_tile.dart';
 import '../widgets/world_map.dart';
 import '../models/exit_node_provider.dart';
+import '../widgets/lethean_colors.dart';
 
 // These were used for testing detection of device external IP address
 // When pressing floatingactionbutton
@@ -43,6 +44,49 @@ class _ProviderListScreenState extends State<ProviderListScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Lethean Anonymizer'),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: const Text(
+                  'Anonymizer',
+                  style: TextStyle(color: LetheanColors.lthnlightblue),
+                ),
+              ),
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage(
+                        "assets/images/lethean-shield-logo-wide.png"),
+                    fit: BoxFit.cover),
+              ),
+            ),
+            ListTile(
+              title: Text('Home'),
+              onTap: () {
+                // Go to default screen.
+                // ...
+              },
+            ),
+            ListTile(
+              title: Text('About'),
+              onTap: () {
+                // Information about app.
+                // ...
+              },
+            ),
+            ListTile(
+              title: Text('Exit'),
+              onTap: () {
+                // Exit the app - close completely in a clean way.
+                // ...
+              },
+            ),
+          ],
+        ),
       ),
       body: Consumer<ExitNodeProviders>(
         builder: (ctx, exitNode, _) => FutureBuilder<void>(
@@ -82,6 +126,7 @@ class _ProviderListScreenState extends State<ProviderListScreen> {
                     )
                   : Column(
                       children: <Widget>[
+                        SizedBox(height: 6.0),
                         WorldMap(
                           mapMarkers: _markers,
                         ),
