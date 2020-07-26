@@ -13,6 +13,7 @@ import '../widgets/vpn_badge.dart';
 import '../widgets/proxy_badge.dart';
 import '../widgets/service_tile_header.dart';
 import '../widgets/service_tile_body.dart';
+import '../widgets/lethean_drawer.dart';
 
 class ServicesListScreen extends StatefulWidget {
   static const routeName = '/services-list';
@@ -29,8 +30,13 @@ class _ServicesListScreenState extends State<ServicesListScreen> {
 
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () => Navigator.pop(context),
+        ),
         title: Text('${_exitNode.name} services'),
       ),
+      drawer: LetheanDrawer(),
       body: Column(
         children: <Widget>[
           SizedBox(height: 6.0),

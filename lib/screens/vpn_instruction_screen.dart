@@ -11,6 +11,7 @@ import '../providers/exit_node_providers.dart';
 import '../models/exit_node_service.dart';
 import '../widgets/vpn_instruction_header.dart';
 import '../widgets/save_ovpn_file_button.dart';
+import '../widgets/lethean_drawer.dart';
 
 class VpnInstructionScreen extends StatelessWidget {
   static const routeName = '/vpn-instruction';
@@ -25,8 +26,13 @@ class VpnInstructionScreen extends StatelessWidget {
           .country;
       return Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () => Navigator.pop(context),
+          ),
           title: Text('${_service.name}'),
         ),
+        drawer: LetheanDrawer(),
         body: Column(
           children: <Widget>[
             SizedBox(height: 6.0),

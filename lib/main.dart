@@ -31,6 +31,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: LetheanColors.lthnbluegreen,
           accentColor: LetheanColors.lthnblue,
           cardColor: LetheanColors.lthndarkbluegreen[900],
+          canvasColor: LetheanColors.lthndarkbluegreen[800],
           brightness: Brightness.dark,
           visualDensity: VisualDensity.adaptivePlatformDensity,
           textTheme: TextTheme(
@@ -40,6 +41,7 @@ class MyApp extends StatelessWidget {
         ),
         home: ProviderListScreen(),
         routes: {
+          ProviderListScreen.routeName: (ctx) => ProviderListScreen(),
           ServicesListScreen.routeName: (ctx) => ServicesListScreen(),
           VpnInstructionScreen.routeName: (ctx) => VpnInstructionScreen(),
         },
