@@ -6,6 +6,7 @@ LICENSE file in the root directory of this source tree. */
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import './providers/exit_node_providers.dart';
 import './screens/providers_list_screen.dart';
@@ -25,19 +26,22 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Lethean Anonymizer',
         theme: ThemeData(
-          appBarTheme: AppBarTheme(color: LetheanColors.lthnbackground),
+          appBarTheme: AppBarTheme(color: LetheanColors.guidedarkgray),
           // appBarTheme: AppBarTheme(color: LetheanColors.lthndarkbluegreen[700]),
-          scaffoldBackgroundColor: LetheanColors.lthnbackground,
+          scaffoldBackgroundColor: LetheanColors.guidedarkgray,
           primarySwatch: LetheanColors.lthnbluegreen,
-          accentColor: LetheanColors.lthnblue,
-          cardColor: LetheanColors.lthndarkbluegreen[900],
-          canvasColor: LetheanColors.lthndarkbluegreen[800],
+          accentColor: LetheanColors.guidebluegreen,
+          // cardColor: LetheanColors.lthndarkbluegreen[900],
+          cardColor: LetheanColors.guidedarkgray[400],
+          // canvasColor: LetheanColors.lthndarkbluegreen[800],
+          canvasColor: LetheanColors.guidedarkgray[350],
           brightness: Brightness.dark,
           visualDensity: VisualDensity.adaptivePlatformDensity,
           textTheme: TextTheme(
             bodyText1: TextStyle(color: Colors.white70),
             bodyText2: TextStyle(color: Colors.white),
           ),
+          fontFamily: GoogleFonts.nunitoSans().fontFamily,
         ),
         home: ProviderListScreen(),
         routes: {

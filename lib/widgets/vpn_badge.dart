@@ -16,14 +16,14 @@ class VpnBadge extends StatelessWidget {
     return Column(
       children: <Widget>[
         CircleAvatar(
-          radius: 18.0,
+          radius: 17.5,
           backgroundColor: Theme.of(context).accentColor,
           child: const Icon(
             Icons.security,
             size: 26.0,
           ),
         ),
-        const SizedBox(height: 4.0),
+        const SizedBox(height: 2.0),
         Text(
           'VPN',
           style: Theme.of(context).textTheme.bodyText2,

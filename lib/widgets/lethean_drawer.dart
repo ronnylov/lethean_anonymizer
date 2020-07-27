@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../screens/providers_list_screen.dart';
-import './lethean_colors.dart';
 
 class LetheanDrawer extends StatelessWidget {
   const LetheanDrawer({
@@ -13,82 +12,77 @@ class LetheanDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return 
-    // Theme(
-    //   data: Theme.of(context).copyWith(
-    //     canvasColor: LetheanColors.lthndarkbluegreen[900],
-    //   ),
-    //   child: 
-      Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            DrawerHeader(
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: const Text(
-                  'Anonymizer',
-                  style: TextStyle(color: LetheanColors.lthnlightblue),
-                ),
-              ),
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage(
-                        "assets/images/lethean-shield-logo-wide.png"),
-                    fit: BoxFit.cover),
-              ),
+    return Drawer(
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: <Widget>[
+          DrawerHeader(
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(),
+              // const Text(
+              //   'Anonymizer',
+              //   style: TextStyle(color: LetheanColors.lthnlightblue),
+              // ),
             ),
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                  image:
+                      AssetImage("assets/images/lethean-shield-logo-wide.png"),
+                  fit: BoxFit.cover),
+            ),
+          ),
+          ListTile(
+            leading: Icon(
+              Icons.home,
+              color: Theme.of(context).accentColor,
+              // color: LetheanColors.lthnblue,
+            ),
+            title: Text(
+              'Home',
+              style: Theme.of(context).textTheme.subtitle1,
+            ),
+            onTap: () {
+              // Go to default screen.
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (ctx) => ProviderListScreen(),
+                ),
+              );
+            },
+          ),
+          ListTile(
+            leading: Icon(
+              Icons.info,
+              color: Theme.of(context).accentColor,
+            ),
+            title: Text(
+              'About',
+              style: Theme.of(context).textTheme.subtitle1,
+            ),
+            onTap: () {
+              // Information about app.
+              showAboutDialog(context: context);
+            },
+          ),
+          if (!Platform.isIOS)
             ListTile(
               leading: Icon(
-                Icons.home,
+                Icons.exit_to_app,
                 color: Theme.of(context).accentColor,
-                // color: LetheanColors.lthnblue,
               ),
               title: Text(
-                'Home',
+                'Exit',
                 style: Theme.of(context).textTheme.subtitle1,
               ),
               onTap: () {
-                // Go to default screen.
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(
-                    builder: (ctx) => ProviderListScreen(),
-                  ),
-                );
+                // Not allowed on iOS - app will be rejected by Apple if trying.
+                Navigator.pop(context);
+                SystemChannels.platform.invokeMethod('SystemNavigator.pop');
               },
             ),
-            ListTile(
-              leading: Icon(
-                Icons.info,
-                color: Theme.of(context).accentColor,
-              ),
-              title: Text(
-                'About',
-                style: Theme.of(context).textTheme.subtitle1,
-              ),
-              onTap: () {
-                // Information about app.
-                // ...
-              },
-            ),
-            if (!Platform.isIOS)
-              ListTile(
-                leading: Icon(
-                  Icons.exit_to_app,
-                  color: Theme.of(context).accentColor,
-                ),
-                title: Text(
-                  'Exit',
-                  style: Theme.of(context).textTheme.subtitle1,
-                ),
-                onTap: () {
-                  // Not allowed on iOS - app will be rejected by Apple if trying.
-                  Navigator.pop(context);
-                  SystemChannels.platform.invokeMethod('SystemNavigator.pop');
-                },
-              ),
-          ],
-        ),
+        ],
+      ),
       // ),
     );
   }

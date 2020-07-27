@@ -7,6 +7,10 @@ LICENSE file in the root directory of this source tree. */
 import 'package:flutter/material.dart';
 
 class LetheanColors {
+  // Generated using Material Design Palette/Theme Generator
+  // http://mcg.mbitson.com/
+  // https://github.com/mbitson/mcg
+
   static const MaterialColor lthnblue =
       MaterialColor(_lthnbluePrimaryValue, <int, Color>{
     50: Color(0xFFE6FAFB),
@@ -126,4 +130,76 @@ class LetheanColors {
     700: Color(0xFF0EF4FF),
   });
   static const int _lthndarkbluegreenAccentValue = 0xFF5AF8FF;
+
+  static const MaterialColor guidebluegreen =
+      MaterialColor(_guidebluegreenPrimaryValue, <int, Color>{
+    50: Color(0xFFE8F8F8),
+    100: Color(0xFFC6ECEE),
+    200: Color(0xFFA0E0E2),
+    300: Color(0xFF79D4D6),
+    400: Color(0xFF5DCACE),
+    500: Color(_guidebluegreenPrimaryValue),
+    600: Color(0xFF3ABBBF),
+    700: Color(0xFF32B3B8),
+    800: Color(0xFF2AABB0),
+    900: Color(0xFF1C9EA3),
+  });
+  static const int _guidebluegreenPrimaryValue = 0xFF40C1C5;
+
+  static const MaterialColor guidebluegreenAccent =
+      MaterialColor(_guidebluegreenAccentValue, <int, Color>{
+    100: Color(0xFFDBFDFF),
+    200: Color(_guidebluegreenAccentValue),
+    400: Color(0xFF75F9FF),
+    700: Color(0xFF5CF8FF),
+  });
+  static const int _guidebluegreenAccentValue = 0xFFA8FBFF;
+
+  static const MaterialColor guidelightgray =
+      MaterialColor(_guidelightgrayPrimaryValue, <int, Color>{
+    50: Color(0xFFF9F9F9),
+    100: Color(0xFFF0F0EF),
+    200: Color(0xFFE6E6E5),
+    300: Color(0xFFDBDBDB),
+    400: Color(0xFFD4D4D3),
+    500: Color(_guidelightgrayPrimaryValue),
+    600: Color(0xFFC7C7C6),
+    700: Color(0xFFC0C0BE),
+    800: Color(0xFFB9B9B8),
+    900: Color(0xFFADADAC),
+  });
+  static const int _guidelightgrayPrimaryValue = 0xFFCCCCCB;
+
+  static const MaterialColor guidelightgrayAccent =
+      MaterialColor(_guidelightgrayAccentValue, <int, Color>{
+    100: Color(0xFFFFFFFF),
+    200: Color(_guidelightgrayAccentValue),
+    400: Color(0xFFFFFFFA),
+    700: Color(0xFFFFFFE0),
+  });
+  static const int _guidelightgrayAccentValue = 0xFFFFFFFF;
+
+  static const MaterialColor guidedarkgray =
+      MaterialColor(_guidedarkgrayPrimaryValue, <int, Color>{
+    50: Color(0xFFE1E2E2),
+    100: Color(0xFFB5B6B6),
+    200: Color(0xFF838585),
+    300: Color(0xFF515454),
+    400: Color(0xFF2C3030),
+    500: Color(_guidedarkgrayPrimaryValue),
+    600: Color(0xFF060A0A),
+    700: Color(0xFF050808),
+    800: Color(0xFF040606),
+    900: Color(0xFF020303),
+  });
+  static const int _guidedarkgrayPrimaryValue = 0xFF070B0B;
+
+  static const MaterialColor guidedarkgrayAccent =
+      MaterialColor(_guidedarkgrayAccentValue, <int, Color>{
+    100: Color(0xFFA6A6A6),
+    200: Color(_guidedarkgrayAccentValue),
+    400: Color(0xFF737373),
+    700: Color(0xFF666666),
+  });
+  static const int _guidedarkgrayAccentValue = 0xFF8C8C8C;
 }
