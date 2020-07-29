@@ -80,7 +80,7 @@ flutter:
   #   - images/a_dot_ham.jpeg
   assets:
     - assets/openvpn_client_template.txt
-    - assets/images/lethean-shield-logo-wide.png
+    - assets/splash/lethean-splash.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
