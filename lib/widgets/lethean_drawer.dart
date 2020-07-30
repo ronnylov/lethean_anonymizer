@@ -2,8 +2,9 @@ import 'dart:io' show Platform;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:lethean_anonymizer/widgets/lethean_colors.dart';
+import 'package:package_info/package_info.dart';
 
+import '../widgets/lethean_colors.dart';
 import '../screens/providers_list_screen.dart';
 
 class LetheanDrawer extends StatelessWidget {
@@ -38,10 +39,6 @@ class LetheanDrawer extends StatelessWidget {
               child: Align(
                 alignment: Alignment.bottomCenter,
                 child: Container(),
-                // const Text(
-                //   'Anonymizer',
-                //   style: TextStyle(color: LetheanColors.lthnlightblue),
-                // ),
               ),
               decoration: BoxDecoration(
                 color: LetheanColors.guidedarkgray.withAlpha(190),
@@ -78,9 +75,22 @@ class LetheanDrawer extends StatelessWidget {
                 'About',
                 style: Theme.of(context).textTheme.subtitle1,
               ),
-              onTap: () {
+              onTap: () async {
                 // Information about app.
-                showAboutDialog(context: context);
+                PackageInfo packageInfo = await PackageInfo.fromPlatform();
+                showAboutDialog(
+                  context: context,
+                  applicationVersion: packageInfo.version,
+                  applicationIcon: Container(
+                    alignment: Alignment.topLeft,
+                    width: 80.0,
+                    child: Image(
+                      image: AssetImage('assets/icon/golden-helmet-adaptive.png'),
+                      fit: BoxFit.fill,
+                      alignment: Alignment.topLeft,
+                    ),
+                  ),
+                );
               },
             ),
             if (!Platform.isIOS)

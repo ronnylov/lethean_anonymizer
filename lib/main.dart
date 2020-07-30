@@ -26,14 +26,19 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Lethean Anonymizer',
         theme: ThemeData(
-          appBarTheme: AppBarTheme(color: LetheanColors.guidedarkgray),
-          // appBarTheme: AppBarTheme(color: LetheanColors.lthndarkbluegreen[700]),
-          scaffoldBackgroundColor: LetheanColors.guidedarkgray,
+          appBarTheme: AppBarTheme(
+            color: Color.alphaBlend(
+              LetheanColors.guidebluegreen.withAlpha(30),
+              LetheanColors.guidedarkgray,
+            ),
+          ),
+          scaffoldBackgroundColor: Color.alphaBlend(
+            LetheanColors.guidebluegreen.withAlpha(30),
+            LetheanColors.guidedarkgray,
+          ),
           primarySwatch: LetheanColors.lthnbluegreen,
           accentColor: LetheanColors.guidebluegreen,
-          // cardColor: LetheanColors.lthndarkbluegreen[900],
           cardColor: LetheanColors.guidedarkgray[400],
-          // canvasColor: LetheanColors.lthndarkbluegreen[800],
           canvasColor: LetheanColors.guidedarkgray[350],
           brightness: Brightness.dark,
           visualDensity: VisualDensity.adaptivePlatformDensity,
