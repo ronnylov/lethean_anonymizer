@@ -1,4 +1,4 @@
-# lthn_vpn
+# lethean_exiplorer
 
 Mobile solution for Lethean VPN
 
