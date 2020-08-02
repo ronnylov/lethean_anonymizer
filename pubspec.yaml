@@ -83,6 +83,7 @@ flutter:
     - assets/openvpn_client_template.txt
     - assets/splash/lethean-splash.png
     - assets/icon/golden-helmet-adaptive.png
+    - assets/google_fonts/Nunito_Sans/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
