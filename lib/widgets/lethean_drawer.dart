@@ -76,6 +76,7 @@ class LetheanDrawer extends StatelessWidget {
                 style: Theme.of(context).textTheme.subtitle1,
               ),
               onTap: () async {
+                Navigator.pop(context);
                 // Information about app.
                 PackageInfo packageInfo = await PackageInfo.fromPlatform();
                 showAboutDialog(
