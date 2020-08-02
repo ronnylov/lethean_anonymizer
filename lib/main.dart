@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => ExitNodeProviders(),
       child: MaterialApp(
-        title: 'Lethean Anonymizer',
+        title: 'Lethean Exiplorer',
         theme: ThemeData(
           appBarTheme: AppBarTheme(
             color: Color.alphaBlend(

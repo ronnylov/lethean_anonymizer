@@ -45,7 +45,7 @@ class _ProviderListScreenState extends State<ProviderListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Lethean Anonymizer'),
+        title: const Text('Lethean Exiplorer'),
       ),
       drawer: LetheanDrawer(),
       body: Consumer<ExitNodeProviders>(

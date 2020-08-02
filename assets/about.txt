@@ -1,6 +1,0 @@
-Lethean is a community driven decentralized VPN project.
-See http://lethean.io
-
-Lethean anonymizer is an open source mobile app for exploring the VPN.
-See https://github.com/ronnylov/lethean_anonymizer
-

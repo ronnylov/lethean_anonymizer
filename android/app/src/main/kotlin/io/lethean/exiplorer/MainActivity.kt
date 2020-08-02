@@ -1,4 +1,4 @@
-package io.lethean.anonymizer
+package io.lethean.exiplorer
 
 import io.flutter.embedding.android.FlutterActivity
 
