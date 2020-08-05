@@ -1,5 +1,8 @@
 # lethean_exiplorer
 
+This project has moved to https://github.com/LetheanMovement/lethean_exiplorer
+------------
+
 Mobile solution for Lethean VPN
 
 A new Flutter project.
